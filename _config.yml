@@ -1,9 +1,9 @@
-title: Nighthawk-Pages
-description: "August 2023 to June 2024"
-owner_name: Tirth Thakkar
-github_username: Tirth-Thakkar
-github_repo: "Nighthawk-Pages"
-baseurl: "/Nighthawk-Pages"
+title: Group Repo
+description: Beijan, Howie, Jake, Tim, Rayhan
+owner_name: Beijan Moniza
+github_username: beijanm
+github_repo: "tri2."
+baseurl: "/tri2."
 remote_theme: jekyll/minima
 minima:
   social_links:
