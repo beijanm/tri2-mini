@@ -22,7 +22,7 @@ type: ccc
       var seconds = now.getSeconds();
 
       // Convert hours, minutes, and seconds to binary
-      var binaryHours = padZero(hours.toString(2));
+      var binaryHours = padZero((hours % 12 || 12).toString(2));
       var binaryMinutes = padZero(minutes.toString(2));
       var binarySeconds = padZero(seconds.toString(2));
 
@@ -33,11 +33,12 @@ type: ccc
 
       // Update the clock display
       document.getElementById('clock').innerHTML =
-        padZero(decimalHours.toString()) + ' : ' + padZero(decimalMinutes.toString()) + ' : ' + padZero(decimalSeconds.toString());
+        padZero(decimalHours.toString()) + ' : ' + padZero(decimalMinutes.toString()) + ' : ' + padZero(decimalSeconds.toString()) + (hours >= 12 ? ' PM' : ' AM');
 
       // Update every second
       setTimeout(updateClock, 1000);
     }
+
 
     function padZero(value) {
       return value.length < 2 ? '0' + value : value;
