@@ -4,8 +4,6 @@ layout: default
 courses: { csp: {week: 13} }
 type: ccc
 ---
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
