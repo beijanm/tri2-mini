@@ -4,6 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-Group repository for Beijan, Howie, Jake, Timothy, and Rayhan
+Group repository for Beijan, Howie, Jake, Timo, and Rayhan
 
 
