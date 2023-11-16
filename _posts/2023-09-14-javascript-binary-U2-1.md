@@ -5,7 +5,6 @@ description: A Binary Math illustrative application using HTML, Liquid, and Java
 courses: { csp: {week: 5, categories: [3.B, 3.C]} }
 categories: [C4.4]
 type: ccc
-
 ---
 
 <!-- 
