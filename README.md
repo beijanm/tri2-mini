@@ -181,3 +181,14 @@ bundle install
 - `_data/compsci.yml` - this contains the supporting data that helps organize the units on the page.
 - `_layouts`\schedule.html - this contains code, in the Liquid language, that generates the HTML for all the rows and columns.
 - fyi, the schedule.html could work for another type of page.  For instance, you could make a csa.md, _data/csa.yml, and tag files with `csa: {week: 0}` under courses.
+
+### Timo readme for the group
+
+#### Members
+  - Timo
+  - Rayhan
+  - Beijan
+  - Howie
+  - Jake
+
+As a group, this project will advance our knowledge in many aspects of Computer Science such as python, HTML, javascript, and newer aspects like scss.
