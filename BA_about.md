@@ -4,6 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-A Fastpages clone, for CSA - Tirth Thakkar & Haseeb Beg
+Group repository for Beijan, Howie, Jake, Timothy, and Rayhan
 
 
