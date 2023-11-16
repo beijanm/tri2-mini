@@ -53,12 +53,12 @@ type: ccc
       var seconds = now.getSeconds();
 
       // Convert hours, minutes, and seconds to binary
-      var binaryHours = padZero(hours.toString(2));
+      var binaryHours = padZero((hours % 12 || 12).toString(2));
       var binaryMinutes = padZero(minutes.toString(2));
       var binarySeconds = padZero(seconds.toString(2));
 
       // Update binary time display
-      var binaryHours = padZero((hours % 12 || 12).toString(2));
+      document.getElementById('binaryHours').innerText = binaryHours;
       document.getElementById('binaryMinutes').innerText = binaryMinutes;
       document.getElementById('binarySeconds').innerText = binarySeconds;
 
