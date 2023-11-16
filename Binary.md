@@ -58,7 +58,7 @@ type: ccc
       var binarySeconds = padZero(seconds.toString(2));
 
       // Update binary time display
-      document.getElementById('binaryHours').innerText = binaryHours;
+      var binaryHours = padZero((hours % 12 || 12).toString(2));
       document.getElementById('binaryMinutes').innerText = binaryMinutes;
       document.getElementById('binarySeconds').innerText = binarySeconds;
 
