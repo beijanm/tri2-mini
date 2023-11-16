@@ -16,6 +16,12 @@ type: ccc
 
   <script>
     function updateClock() {
+      
+      // Get the current date
+      var day = now.getDate();
+      var month = now.getMonth() + 1; // JavaScript months are 0-11
+      var year = now.getFullYear();
+
       var now = new Date();
       var hours = now.getHours();
       var minutes = now.getMinutes();
@@ -33,7 +39,9 @@ type: ccc
 
       // Update the clock display
       document.getElementById('clock').innerHTML =
-        padZero(decimalHours.toString()) + ' : ' + padZero(decimalMinutes.toString()) + ' : ' + padZero(decimalSeconds.toString()) + (hours >= 12 ? ' PM' : ' AM');
+      padZero(decimalHours.toString()) + ' : ' + padZero(decimalMinutes.toString()) + ' : ' + padZero(decimalSeconds.toString()) + (hours >= 12 ? ' PM' : ' AM') +
+      '<br>' + padZero(day.toString()) + '/' + padZero(month.toString()) + '/' + year; // Add the date
+
 
       // Update every second
       setTimeout(updateClock, 1000);
