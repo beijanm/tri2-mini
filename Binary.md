@@ -11,8 +11,13 @@ type: ccc
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binary Digital Clock with AM/PM and Date</title>
   <style>
+    @font-face {
+      font-family: 'Digital-7';
+      src: url('Digital-7.ttf') format('truetype');
+    } 
+
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Digital-7', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,16 +26,27 @@ type: ccc
       color: white;
       text-align: center;
     }
+
     #clock {
-      font-size: 24px;
+      font-family: 'Digital-7', sans-serif;
+      font-size: 48px;
       letter-spacing: 2px;
     }
-    .binary, .decimal, .date {
-      margin: 10px 0;
+
+    .date, .binary, .decimal {
+      font-family: 'Digital-7', sans-serif;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
     }
+
     .label {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-size: 24px;
+      color: #20C20E; /* Green */
+      border: 3px solid #20C20E; /* Green */
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px #20C20E; /* Green */
+      padding: 10px; /* Add space around the text */
     }
   </style>
 </head>
