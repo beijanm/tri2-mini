@@ -2,7 +2,7 @@
 toc: true
 comments: false
 layout: post
-title: Week 1 Exit Ticket
+title: Left Shift Binary
 description: Starting off the second trimester strong!
 type: tangibles
 courses: { compsci: {week: 1} }
