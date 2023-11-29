@@ -6,47 +6,55 @@ title: Left/Right Shift Binary Code Visual
 type: ccc
 courses: { csp: {week: 14} }
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binary Shifts Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    label, input, button { margin: 10px 0; }
+    #output { margin-top: 20px; }
+  </style>
   <script>
-    function leftShiftBinary() {
-      let binaryNumber = parseInt(document.getElementById('binaryInput').value, 2);
-      let shifts = parseInt(document.getElementById('shiftInput').value);
-
-      let results = [];
-
-      for (let i = 0; i < shifts; i++) {
-        binaryNumber = binaryNumber << 1;
-        results.push(binaryNumber);
-      }
-
-      document.getElementById('output').innerHTML = `<p>Initial binary number: ${binaryNumber.toString(2)}</p>`;
-      
-      results.forEach((result, index) => {
-        document.getElementById('output').innerHTML += `<p>Left-shift ${index + 1} times: ${result.toString(2)}</p>`;
-      });
+    function isBinary(number) {
+      return /^[01]+$/.test(number);
     }
 
-    function rightShiftBinary() {
-      let binaryNumber = parseInt(document.getElementById('binaryInput').value, 2);
-      let shifts = parseInt(document.getElementById('shiftInput').value);
-
-      let results = [];
-
-      for (let i = 0; i < shifts; i++) {
-        binaryNumber = binaryNumber >> 1;
-        results.push(binaryNumber);
+    function shiftBinary(isLeftShift) {
+      const binaryNumberInput = document.getElementById('binaryInput').value;
+      if (!isBinary(binaryNumberInput)) {
+        alert("Please enter a valid binary number.");
+        return;
       }
 
-      document.getElementById('output').innerHTML = `<p>Initial binary number: ${binaryNumber.toString(2)}</p>`;
+      let binaryNumber = parseInt(binaryNumberInput, 2);
+      const shifts = parseInt(document.getElementById('shiftInput').value);
 
+      if (shifts < 0) {
+        alert("Please enter a non-negative integer for shifts.");
+        return;
+      }
+
+      let results = [];
+      let operation = isLeftShift ? (num) => num << 1 : (num) => num >> 1;
+
+      for (let i = 0; i < shifts; i++) {
+        binaryNumber = operation(binaryNumber);
+        results.push(binaryNumber.toString(2));
+      }
+
+      let outputHtml = `<p>Initial binary number: ${binaryNumberInput}</p>`;
       results.forEach((result, index) => {
-        document.getElementById('output').innerHTML += `<p>Right-shift ${index + 1} times: ${result.toString(2)}</p>`;
+        outputHtml += `<p>${isLeftShift ? 'Left' : 'Right'}-shift ${index + 1} times: ${result}</p>`;
       });
+      document.getElementById('output').innerHTML = outputHtml;
+    }
+
+    function clearResults() {
+      document.getElementById('binaryInput').value = '';
+      document.getElementById('shiftInput').value = '';
+      document.getElementById('output').innerHTML = '';
     }
   </script>
 </head>
@@ -59,8 +67,9 @@ courses: { csp: {week: 14} }
   <label for="shiftInput">Enter the number of shifts:</label>
   <input type="number" id="shiftInput" placeholder="Enter shift amount">
 
-  <button onclick="leftShiftBinary()">Left Shift</button>
-  <button onclick="rightShiftBinary()">Right Shift</button>
+  <button onclick="shiftBinary(true)">Left Shift</button>
+  <button onclick="shiftBinary(false)">Right Shift</button>
+  <button onclick="clearResults()">Clear</button>
 
   <div id="output"></div>
 </body>
