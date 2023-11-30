@@ -1,12 +1,11 @@
 ---
 toc: true
-comments: false
+comments: true
 layout: hack
 title: Left/Right Shift Binary Code Visual 
 type: ccc
 courses: { csp: {week: 14} }
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">

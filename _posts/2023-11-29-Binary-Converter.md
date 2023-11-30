@@ -1,6 +1,6 @@
 ---
 toc: true
-comments: false
+comments: true
 layout: hack
 title: Binary converter
 type: ccc
