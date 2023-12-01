@@ -5,6 +5,7 @@ layout: hack
 title: Left/Right Shift Binary Code Visual 
 type: ccc
 courses: { csp: {week: 14} }
+---
 
 <html lang="en">
 <head>
