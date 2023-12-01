@@ -50,7 +50,15 @@ type: ccc
 
         .label {
             position: absolute;
-            left: -30px;
+            left: 185px;
+        }
+
+        .colon {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 15px;
+            text-align: center;
+            margin-top: 175px;
         }
     </style>
 </head>
@@ -116,6 +124,14 @@ type: ccc
                 timeElement.textContent = realTime[i];
                 digitContainer.appendChild(timeElement);
                 document.getElementById('bcdClock').appendChild(digitContainer);
+
+                // Add a colon after every two digits, but not after the last pair
+                if (i === 1 || i === 3) {
+                    const colonElement = document.createElement('div');
+                    colonElement.className = 'colon';
+                    colonElement.textContent = ':';
+                    document.getElementById('bcdClock').appendChild(colonElement);
+                }
             }
 
             const ampmElement = document.createElement('div');
