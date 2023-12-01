@@ -2,10 +2,10 @@
 toc: true
 comments: true
 layout: hack
-title: Binary converter
+title: Binary bitwise conversion
 type: ccc
 courses: { csp: {week: 14} }
-
+---
 
 <html>
 <head>
