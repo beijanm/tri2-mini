@@ -4,7 +4,7 @@ comments: true
 layout: post
 title: Week 2 Review (Project)
 description: What we have been up to...
-type: collaboration
+type: collab
 courses: { csp: {week: 14} }
 ---
 
