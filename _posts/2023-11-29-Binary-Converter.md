@@ -5,7 +5,7 @@ layout: hack
 title: Binary converter
 type: ccc
 courses: { csp: {week: 14} }
-
+---
 
 <html>
 <head>
