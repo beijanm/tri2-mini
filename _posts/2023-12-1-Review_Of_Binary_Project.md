@@ -1,11 +1,11 @@
 ---
 toc: true
-comments: false
+comments: true
 layout: post
 title: Week 2 Review (Project)
 description: What we have been up to...
-type: tangibles
-courses: { compsci: {week: 2} }
+type: collaboration
+courses: { csp: {week: 14} }
 ---
 
 <h1 style="text-align: center;"><strong>Our Progress</strong></h1>
