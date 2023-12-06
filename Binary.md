@@ -11,10 +11,11 @@ type: ccc
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binary Digital Clock with AM/PM and Date</title>
   <style>
+    /* Your existing CSS styles */
     @font-face {
       font-family: 'Digital-7';
       src: url('Digital-7.ttf') format('truetype');
-    } 
+    }
 
     body {
       font-family: 'Digital-7', sans-serif;
@@ -27,6 +28,7 @@ type: ccc
       text-align: center;
     }
 
+    /* Styles for the clock elements */
     #clock {
       font-family: 'Digital-7', sans-serif;
       font-size: 48px;
@@ -48,8 +50,13 @@ type: ccc
       box-shadow: 0px 0px 10px #20C20E; /* Green */
       padding: 10px; /* Add space around the text */
     }
-    .weather {
-      margin-top: 20px; 
+
+    .circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #20C20E; /* Initial color */
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -69,6 +76,7 @@ type: ccc
       <span id="decimalHours">00</span> : <span id="decimalMinutes">00</span> : <span id="decimalSeconds">00</span>
       <span id="decimalAmPm">AM</span>
     </div>
+    <div class="circle" id="colorCircle"></div>
   </div>
 
   <script>
@@ -78,34 +86,34 @@ type: ccc
       var minutes = now.getMinutes();
       var seconds = now.getSeconds();
 
-      // Determine AM or PM
       var amPm = hours >= 12 ? 'PM' : 'AM';
-
-      // Convert to 12-hour format for display
       var displayHours = hours % 12;
-      displayHours = displayHours ? displayHours : 12; // Convert '0' to '12'
+      displayHours = displayHours ? displayHours : 12;
 
-      // Convert hours, minutes, and seconds to binary
       var binaryHours = padZero(displayHours.toString(2));
       var binaryMinutes = padZero(minutes.toString(2));
       var binarySeconds = padZero(seconds.toString(2));
 
-      // Update binary time display
       document.getElementById('binaryHours').innerText = binaryHours;
       document.getElementById('binaryMinutes').innerText = binaryMinutes;
       document.getElementById('binarySeconds').innerText = binarySeconds;
       document.getElementById('binaryAmPm').innerText = amPm;
 
-      // Update decimal time display
       document.getElementById('decimalHours').innerText = padZero(displayHours.toString());
       document.getElementById('decimalMinutes').innerText = padZero(minutes.toString());
       document.getElementById('decimalSeconds').innerText = padZero(seconds.toString());
       document.getElementById('decimalAmPm').innerText = amPm;
 
-      // Update date display
-      document.getElementById('currentDate').innerText = formatDate(now);
+      var currentDateElement = document.getElementById('currentDate');
+      currentDateElement.innerText = formatDate(now);
+      
+      var binaryDate = padZero(now.getDate().toString(2));
+      var binaryValue = parseInt(binaryDate, 2);
+      var color = '#' + binaryValue.toString(16).padStart(6, '0');
+      
+      // Apply the color to the circle
+      document.getElementById('colorCircle').style.backgroundColor = color;
 
-      // Update every second
       setTimeout(updateClock, 1000);
     }
 
@@ -120,7 +128,6 @@ type: ccc
       return year + '-' + month + '-' + day;
     }
 
-    // Initial call to display the clock
     updateClock();
   </script>
 </body>
