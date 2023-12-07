@@ -5,6 +5,7 @@ courses: { csp: {week: 13} }
 type: ccc
 ---
 
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -31,7 +32,7 @@ type: ccc
     /* Styles for the clock elements */
     #clock {
       font-family: 'Digital-7', sans-serif;
-      font-size: 48px;
+      font-size: 24px; /* Updated font size */
       letter-spacing: 2px;
     }
 
@@ -43,20 +44,12 @@ type: ccc
     }
 
     .label {
-      font-size: 24px;
+      font-size: 18px; /* Smaller label font size */
       color: #20C20E; /* Green */
       border: 3px solid #20C20E; /* Green */
       border-radius: 10px;
       box-shadow: 0px 0px 10px #20C20E; /* Green */
       padding: 10px; /* Add space around the text */
-    }
-
-    .circle {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background-color: #20C20E; /* Initial color */
-      margin-top: 20px;
     }
   </style>
 </head>
@@ -76,7 +69,7 @@ type: ccc
       <span id="decimalHours">00</span> : <span id="decimalMinutes">00</span> : <span id="decimalSeconds">00</span>
       <span id="decimalAmPm">AM</span>
     </div>
-    <div class="circle" id="colorCircle"></div>
+    <div id="colorExplanation">Clock color changes based on the combined binary representation of time (hours, minutes, seconds). For instance, the individual binary digits affect the color.</div>
   </div>
 
   <script>
@@ -107,14 +100,39 @@ type: ccc
       var currentDateElement = document.getElementById('currentDate');
       currentDateElement.innerText = formatDate(now);
       
-      var binaryDate = padZero(now.getDate().toString(2));
-      var binaryValue = parseInt(binaryDate, 2);
-      var color = '#' + binaryValue.toString(16).padStart(6, '0');
-      
-      // Apply the color to the circle
-      document.getElementById('colorCircle').style.backgroundColor = color;
+      // Extract the tens place of seconds
+      var tensPlaceSeconds = Math.floor(seconds / 10);
 
-      setTimeout(updateClock, 1000);
+      // Define colors based on the tens place of seconds
+      var color;
+      switch (tensPlaceSeconds) {
+        case 0:
+          color = 'yellow'; // 00-09 seconds
+          break;
+        case 1:
+          color = 'red'; // 10-19 seconds
+          break;
+        case 2:
+          color = 'blue'; // 20-29 seconds
+          break;
+        case 3:
+          color = 'green'; // 30-39 seconds
+          break;
+        case 4:
+          color = 'purple'; // 40-49 seconds
+          break;
+        case 5:
+          color = 'pink'; // 50-59 seconds
+          break;
+        default:
+          color = 'yellow'; // Default color for seconds beyond 59
+          break;
+      }
+
+      // Apply the color to the clock
+      document.getElementById('clock').style.color = color;
+
+      setTimeout(updateClock, 1000); // Change every 1 second
     }
 
     function padZero(value) {
@@ -128,7 +146,8 @@ type: ccc
       return year + '-' + month + '-' + day;
     }
 
-    updateClock();
+    updateClock(); // Initial call to start the clock update
+    setInterval(updateClock, 1000); // Update the clock every second
   </script>
 </body>
 </html>
