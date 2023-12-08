@@ -5,16 +5,18 @@ courses: { csp: {week: 13} }
 type: ccc
 ---
 
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Binary Digital Clock with AM/PM and Date</title>
   <style>
+    /* Your existing CSS styles */
     @font-face {
       font-family: 'Digital-7';
       src: url('Digital-7.ttf') format('truetype');
-    } 
+    }
 
     body {
       font-family: 'Digital-7', sans-serif;
@@ -27,9 +29,10 @@ type: ccc
       text-align: center;
     }
 
+    /* Styles for the clock elements */
     #clock {
       font-family: 'Digital-7', sans-serif;
-      font-size: 48px;
+      font-size: 24px; /* Updated font size */
       letter-spacing: 2px;
     }
 
@@ -41,15 +44,12 @@ type: ccc
     }
 
     .label {
-      font-size: 24px;
+      font-size: 18px; /* Smaller label font size */
       color: #20C20E; /* Green */
       border: 3px solid #20C20E; /* Green */
       border-radius: 10px;
       box-shadow: 0px 0px 10px #20C20E; /* Green */
       padding: 10px; /* Add space around the text */
-    }
-    .weather {
-      margin-top: 20px; 
     }
   </style>
 </head>
@@ -69,6 +69,7 @@ type: ccc
       <span id="decimalHours">00</span> : <span id="decimalMinutes">00</span> : <span id="decimalSeconds">00</span>
       <span id="decimalAmPm">AM</span>
     </div>
+    <div id="colorExplanation">Clock color changes based on the combined binary representation of time (hours, minutes, seconds). For instance, the individual binary digits affect the color.</div>
   </div>
 
   <script>
@@ -78,35 +79,60 @@ type: ccc
       var minutes = now.getMinutes();
       var seconds = now.getSeconds();
 
-      // Determine AM or PM
       var amPm = hours >= 12 ? 'PM' : 'AM';
-
-      // Convert to 12-hour format for display
       var displayHours = hours % 12;
-      displayHours = displayHours ? displayHours : 12; // Convert '0' to '12'
+      displayHours = displayHours ? displayHours : 12;
 
-      // Convert hours, minutes, and seconds to binary
       var binaryHours = padZero(displayHours.toString(2));
       var binaryMinutes = padZero(minutes.toString(2));
       var binarySeconds = padZero(seconds.toString(2));
 
-      // Update binary time display
       document.getElementById('binaryHours').innerText = binaryHours;
       document.getElementById('binaryMinutes').innerText = binaryMinutes;
       document.getElementById('binarySeconds').innerText = binarySeconds;
       document.getElementById('binaryAmPm').innerText = amPm;
 
-      // Update decimal time display
       document.getElementById('decimalHours').innerText = padZero(displayHours.toString());
       document.getElementById('decimalMinutes').innerText = padZero(minutes.toString());
       document.getElementById('decimalSeconds').innerText = padZero(seconds.toString());
       document.getElementById('decimalAmPm').innerText = amPm;
 
-      // Update date display
-      document.getElementById('currentDate').innerText = formatDate(now);
+      var currentDateElement = document.getElementById('currentDate');
+      currentDateElement.innerText = formatDate(now);
+      
+      // Extract the tens place of seconds
+      var tensPlaceSeconds = Math.floor(seconds / 10);
 
-      // Update every second
-      setTimeout(updateClock, 1000);
+      // Define colors based on the tens place of seconds
+      var color;
+      switch (tensPlaceSeconds) {
+        case 0:
+          color = 'yellow'; // 00-09 seconds
+          break;
+        case 1:
+          color = 'red'; // 10-19 seconds
+          break;
+        case 2:
+          color = 'blue'; // 20-29 seconds
+          break;
+        case 3:
+          color = 'green'; // 30-39 seconds
+          break;
+        case 4:
+          color = 'purple'; // 40-49 seconds
+          break;
+        case 5:
+          color = 'pink'; // 50-59 seconds
+          break;
+        default:
+          color = 'yellow'; // Default color for seconds beyond 59
+          break;
+      }
+
+      // Apply the color to the clock
+      document.getElementById('clock').style.color = color;
+
+      setTimeout(updateClock, 1000); // Change every 1 second
     }
 
     function padZero(value) {
@@ -120,8 +146,8 @@ type: ccc
       return year + '-' + month + '-' + day;
     }
 
-    // Initial call to display the clock
-    updateClock();
+    updateClock(); // Initial call to start the clock update
+    setInterval(updateClock, 1000); // Update the clock every second
   </script>
 </body>
 </html>
